@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome To Selfie-With Fame</title>
+	<link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+<ul class="nav justify-content-center">
+	<h2 style="float: left;">Welcome To Selfie-With Fame</h2>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="link-reg">Register</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="linklogin">Login</a>
+  </li>
+</ul>
+	
+
+<div class="container">
+	<div class="mx-auto" style="max-width: 500px;">
+	<center><h3 id="logreg">Register</h3></center>
+	<div class="jumbotron" style="max-width: 450px;">
+
+
+<!--Login Form-->
+<form id="reg-form">
+  <div class="form-group" onsubmit="return false">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="text" class="form-control" id="reusername" placeholder="Choose a Username">
+    <small id="regusernameh" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" id="regpwd" placeholder="Password">
+  </div>
+  <center><button type="submit" class="btn btn-primary" id="btnreg">Register</button></center>
+</form>
+
+<!--Register Form-->
+<form id="login-form" style="display: none;">
+  <div class="form-group" onsubmit="return false">
+    <label>Username</label>
+    <input type="text" class="form-control" id="lusername"  placeholder="Enter Username">
+    <small id="lusernameh" class="form-text text-muted"></small>
+  </div>
+  <div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" id="loginpwd" placeholder="Password">
+    <small class="form-text text-muted" id="loginpwdh"></small>
+  </div>
+  <center><button type="submit" class="btn btn-warning" id="btnlgn">Login</button></center>
+</form>
+</div>
+</div>
+	<script src="javascripts/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#linklogin").click(function (event) {
+			event.preventDefault();
+			$("#login-form").show();
+			$("#reg-form").hide();
+			$("#logreg").text("Login");
+			})
+
+			$("#link-reg").click(function (event) {
+			event.preventDefault();
+			$("#reg-form").show();
+			$("#login-form").hide();
+			$("#logreg").text("Register");
+			})
+
+
+			$("#btnlgn").click(function (event) {
+
+				event.preventDefault();
+				alert("click");
+				var password=$("#loginpwd").val();
+				var username=$("#lusername").val();
+				if (password!=="" && username!=="") {
+						$.ajax({
+				        url: '/users/login',
+				        data: {username:username,password:password},
+				        type: 'POST',
+						success: function (data) {
+
+						},
+						error: function (xhr, status, error) {
+						    console.log('Error: ' + error.message);
+						    $('#lblResponse').html('Error connecting to the server.');
+						}
+						});
+
+				}
+
+			});
+				//window.location.href = "/users/dashboard";
+			
+
+			$("#btnreg").click(function (event) {
+
+				event.preventDefault();
+				var username=$("#reusername").val();
+				var password =$("#regpwd").val();
+				if (username!=="" && password!=="") {
+						 $.ajax({
+				        url: '/users/register',
+				        data: {username:username,password:password},
+				        type: 'POST',
+						success: function (data) {
+						},
+						error: function (xhr, status, error) {
+						    console.log('Error: ' + error.message);
+						    $('#lblResponse').html('Error connecting to the server.');
+						}
+						});
+				}
+
+			});
+
+			});
+	</script>
+</div>
+</body>
+</html>

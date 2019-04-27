@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome To Selfie-With Fame</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+</head>
+<body>
+<ul class="nav justify-content-center">
+	<h2 style="float: left;">Welcome To Selfie-With Fame</h2>
+  <li class="nav-item">
+    <a class="nav-link" href="#" id="link-logout">Logout</a>
+  </li>
+</ul>
+	
+
+<div class="container">
+		<div class="mx-auto jumbotron" id="postEvent" style="max-width: 500px;">
+		<center><h2>Add post</h2>
+		<form enctype="multipart/form-data" onsubmit="return false" id="addEventForm">
+  <div class="form-group">
+    <label>Event Name<span class="star text-danger">*</span></label>
+    <input type="text" required class="form-control" id="addEventName" aria-describedby="addEventName" placeholder="Enter Event Name">
+    <small id="addEventNameHelp" class="form-text text-muted text-danger star"></small>
+  </div>
+  	<div>
+  		    
+    <label>Event Location<span class="star text-danger">*</span></label><br>
+    <small>Please click on a location on the map to add the location of the event</small>
+    <div class="form-row">
+   <div class="form-group col-md-6">
+   	<label>Longitude</label>
+
+   	 <input type="text" required class="form-control" id="addEventLocationLong" aria-describedby="addEventLocation"  disabled>
+   </div>
+      <div class="form-group col-md-6">
+   	<label>Latitude</label>
+   	 <input type="text" required class="form-control" id="addEventLocationLat" aria-describedby="addEventLocation"  disabled>
+   </div>
+
+
+	<small id="addEventLocationHelp" class="form-text text-muted text-danger star"></small>
+	</div>
+  	</div>
+    <div id="mapAddEvent" style="width: 500px; height: 500px; max-width: 100%;">
+    </div>
+    
+  
+  <div class="form-group">
+    <label>Date <span class="star text-danger">*</span></label>
+    <input type="date" class="form-control" id="addEventDate" required>
+    <small id="addEventDateHelp" class="form-text text-muted text-danger star"></small>
+  </div>
+   <div class="form-group">
+    <label>Upload Pictures <span class="star text-danger">*</span></label>
+    <input type="file" class="form-control" id="addEventPhoto" required style="display: none;">
+    <button class="btn btn-warning" id="addEventPhotoFake">Choose Image</button>
+    <small id="addEventPhotoHelp" class="form-text text-muted text-danger star "></small>
+  </div>
+  <label>Take a picture</label>
+  <video width="450" height="400" id="video">
+    
+  </video>
+  <button id="snap">Capture</button>
+  <canvas id="canvas" width="450" height="400">
+    
+  </canvas>
+  <script type="text/javascript">
+    var video=document.getElementById('video');
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({
+        video:true,
+        audio:true
+      }).then(function (stream) {
+        video.src=window.url.createObjectURL(stream);
+      });
+    }
+  </script>
+  <div class="form-group">
+
+    
+  </div>
+     <div class="form-group">
+    <label>Event Description</label>
+    <textarea class="form-control" id="addEventDesc">
+    	
+    </textarea>
+    <small id="addEventDescHelp" class="form-text text-muted text-danger star"></small>
+  </div>
+<center>
+  <button type="submit" class="btn btn-primary" id="addEventBtn">Add Event</button></center>
+</form>
+</center>
+	</div>
+
+<script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/jquery.min.js"></script>
+	    <script type="text/javascript" src="/javascripts/input-map.js">
+    </script>
+    <script type="text/javascript" src="/javascripts/app.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			});
+	</script>
+</div>
+</body>
+</html>
